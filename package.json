@@ -10,6 +10,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
+    "laravel-mix": "^6.0.43",
     "postcss-scss": "^4.0.4",
     "prettier": "^2.6.2",
     "stylelint": "^14.8.1",
