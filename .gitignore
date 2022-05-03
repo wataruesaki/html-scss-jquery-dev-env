@@ -105,3 +105,10 @@ dist
 
 # IDE
 .idea
+
+# Laravel Mix
+mix-manifest.json
+mix.js.map
+
+# output
+out
