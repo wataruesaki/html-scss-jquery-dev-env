@@ -11,6 +11,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "laravel-mix": "^6.0.43",
+    "laravel-mix-glob": "^1.1.10",
     "postcss-scss": "^4.0.4",
     "prettier": "^2.6.2",
     "resolve-url-loader": "^5.0.0",
