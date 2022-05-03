@@ -108,6 +108,7 @@ dist
 
 # Laravel Mix
 mix-manifest.json
+mix.js.map
 
 # output
 out
