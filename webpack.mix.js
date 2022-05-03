@@ -1,8 +1,13 @@
 'use strict'
 
 const mix = require('laravel-mix')
-const MixGlob = require('laravel-mix-glob')
-const mixGlob = new MixGlob({ mix })
+const glob = require('glob')
 const ASSETS_PATH = 'out/assets'
 
-mixGlob.sass('src/sass/**/*.scss', `${ASSETS_PATH}/css`)
+glob
+  .sync('src/sass/**/*.scss', {
+    ignore: 'src/sass/**/_*.scss',
+  })
+  .map((file) => {
+    mix.sass(file, `${ASSETS_PATH}/css`)
+  })
