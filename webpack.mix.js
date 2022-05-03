@@ -9,5 +9,5 @@ glob
     ignore: 'src/sass/**/_*.scss',
   })
   .map((file) => {
-    mix.sass(file, `${ASSETS_PATH}/css`)
+    mix.sass(file, `${ASSETS_PATH}/css`).sourceMaps(false, 'inline-source-map')
   })
