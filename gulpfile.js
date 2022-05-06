@@ -1,26 +1,25 @@
 'use strict'
 
+const config = require('./config')
 const gulp = require('gulp')
 const plumber = require('gulp-plumber')
 const htmlmin = require('gulp-htmlmin')
-const htmlSrcPath = 'src/html/**/*.html'
 const imagemin = require('gulp-imagemin')
 const mozjpeg = require('imagemin-mozjpeg')
 const pngquant = require('imagemin-pngquant')
 const imageminGiflossy = require('imagemin-giflossy')
 const imageminSvgo = require('imagemin-svgo')
-const imgSrcPath = 'src/images/**/*.{jpg,jpeg,png,gif,svg}'
 
 const minifyHTML = (options = {}) =>
   gulp
-    .src(htmlSrcPath)
+    .src(config.src.html)
     .pipe(plumber())
     .pipe(htmlmin(options))
-    .pipe(gulp.dest('out'))
+    .pipe(gulp.dest(config.out.html))
 
 const minifyImages = () =>
   gulp
-    .src(imgSrcPath)
+    .src(config.src.img)
     .pipe(plumber())
     .pipe(
       imagemin([
@@ -36,13 +35,13 @@ const minifyImages = () =>
         imageminSvgo(),
       ])
     )
-    .pipe(gulp.dest('out/assets/images'))
+    .pipe(gulp.dest(config.out.img))
 
 gulp.task('dev', (cb) => {
   minifyHTML()
   minifyImages()
-  gulp.watch(htmlSrcPath, minifyHTML)
-  gulp.watch(imgSrcPath, minifyImages)
+  gulp.watch(config.src.html, minifyHTML)
+  gulp.watch(config.src.img, minifyImages)
   cb()
 })
 

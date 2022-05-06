@@ -5,6 +5,7 @@
   "author": "Wataru Esaki",
   "license": "MIT",
   "scripts": {
+    "start": "npx browser-sync start -c bs-config.js",
     "dev": "npm-run-all -p dev:*",
     "build": "rm -rf out && npm-run-all -p build:*",
     "dev:mix": "npx mix watch",
