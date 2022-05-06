@@ -102,13 +102,82 @@ That's it!
 
 <h2 id="utils">3. Utils</h2>
 
-### Create assets
+### Mixins
+
+#### mq($bp)
+
+```scss
+@use "foundation/mixin" as m;
+
+.hoge {
+  // * The following mq($bp) doesn't depend on base device
+  @include m.mq(se) {
+    // iPhone SE styles
+  }
+
+  // * In case of base device is sp
+  // SP Styles
+
+  @include m.mq(sm) {
+    // Tablet styles
+  }
+
+  @include m.mq(md) {
+    // Styles of a big tablet and PC
+  }
+
+  @include m.mq(lg) {
+    // PC styles
+  }
+
+  // * In case of base device is pc
+  // PC styles
+
+  @include m.mq(lg) {
+    // Styles of a big tablet and PC
+  }
+
+  @include m.mq(md) {
+    // Tablet styles
+  }
+
+  @include m.mq(sm) {
+    // SP Styles
+  }
+}
+```
+
+##### Configuration
+
+###### `src/sass/foundation/variable.scss`
+
+```scss
+$mq: (
+  bd: "sp", // "sp" | "pc"
+  se: 374,
+  sm: 600,
+  md: 960,
+  lg: 1280,
+);
+```
+
+bd stands for base device.
+
+It must be `"sp"` or `"pc"`.
+
+You can change and add breakpoints like sm, md and lg.
+
+#### fz($fz)
+
+### Scripts
+
+#### Create assets
 
 ```shell
 yarn run create -n [name]
 ```
 
-### Delete assets
+#### Delete assets
 
 ```shell
 yarn run delete -n [name]
