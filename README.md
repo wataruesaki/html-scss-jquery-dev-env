@@ -68,6 +68,8 @@ JavaScript: `src/js`
 
 Images: `src/images`
 
+*A compressed image is generated automatically if you put an image into `src/images`.
+
 ### Deployment
 
 #### 1. Generate optimized assets
