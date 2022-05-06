@@ -2,16 +2,25 @@
 
 const gulp = require('gulp')
 const plumber = require('gulp-plumber')
+const htmlmin = require('gulp-htmlmin')
+const htmlSrcPath = 'src/html/**/*.html'
 const imagemin = require('gulp-imagemin')
 const mozjpeg = require('imagemin-mozjpeg')
 const pngquant = require('imagemin-pngquant')
 const imageminGiflossy = require('imagemin-giflossy')
 const imageminSvgo = require('imagemin-svgo')
-const srcPath = 'src/images/**/*.{jpg,jpeg,png,gif,svg}'
+const imgSrcPath = 'src/images/**/*.{jpg,jpeg,png,gif,svg}'
+
+const minifyHTML = (options = {}) =>
+  gulp
+    .src(htmlSrcPath)
+    .pipe(plumber())
+    .pipe(htmlmin(options))
+    .pipe(gulp.dest('out'))
 
 const minifyImages = () =>
   gulp
-    .src(srcPath)
+    .src(imgSrcPath)
     .pipe(plumber())
     .pipe(
       imagemin([
@@ -27,15 +36,18 @@ const minifyImages = () =>
         imageminSvgo(),
       ])
     )
-    .pipe(gulp.dest('theme/assets/images'))
+    .pipe(gulp.dest('out/assets/images'))
 
 gulp.task('dev', (cb) => {
+  minifyHTML()
   minifyImages()
-  gulp.watch(srcPath, minifyImages)
+  gulp.watch(htmlSrcPath, minifyHTML)
+  gulp.watch(imgSrcPath, minifyImages)
   cb()
 })
 
 gulp.task('build', (cb) => {
+  minifyHTML({ collapseWhitespace: true })
   minifyImages()
   cb()
 })
