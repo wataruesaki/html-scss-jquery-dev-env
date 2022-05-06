@@ -14,7 +14,9 @@ Happy coding!
 
 ### [2. How to use](#how-to-use)
 
-### 3. Next
+### [3. Utils](#utils)
+
+### [4. Next](#next)
 
 <h2 id="prerequisites">0. Prerequisites</h2>
 
@@ -95,3 +97,19 @@ yarn start
 #### 3. Put `out` into your production environment if there is no problem
 
 That's it!
+
+<h2 id="utils">3. Utils</h2>
+
+### Create assets
+
+```shell
+yarn run create -f [name]
+```
+
+### Delete assets
+
+```shell
+yarn run delete -f [name]
+```
+
+<h2 id="next">4. Next</h2>
