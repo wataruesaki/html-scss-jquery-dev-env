@@ -5,25 +5,31 @@ const chalk = require('chalk')
 const { getArgs } = require('./utils/func')
 const data = require('./utils/data')
 
-const create = async () => {
+const create = () => {
   const { name } = getArgs()
-  const imageDir = `src/images/${name}`
-  let isIgnoredImageDir = false
+  const htmlPath = `src/html/${name}`
+  const imgPath = `src/images/${name}`
 
-  try {
-    await fs.mkdir(imageDir)
-  } catch (err) {
-    if (err.code !== 'EEXIST') {
-      throw new Error(chalk.red(err.message))
+  const tryMkDir = async (path) => {
+    try {
+      await fs.mkdir(path)
+      return true
+    } catch (err) {
+      if (err.code !== 'EEXIST') {
+        throw new Error(chalk.red(err.message))
+      }
+
+      console.log(chalk.red(`Ignored ${path} because it already exists.`))
+      return false
     }
-
-    console.log(chalk.red(`Ignored ${imageDir} because it already exists.`))
-    isIgnoredImageDir = true
   }
+
+  tryMkDir(htmlPath)
+  const isGenImg = tryMkDir(imgPath)
 
   const writePathMap = [
     {
-      path: `src/html/${name}.html`,
+      path: `${htmlPath}/index.html`,
       data: new Uint8Array(Buffer.from(data.html(name))),
     },
     {
@@ -47,8 +53,8 @@ const create = async () => {
   console.log(chalk.green('Congrats!'))
   console.log(chalk.green('The following assets were created.'))
 
-  if (!isIgnoredImageDir) {
-    console.log(imageDir)
+  if (isGenImg) {
+    console.log(imgPath)
   }
 
   writePathMap.map(({ path }) => console.log(path))
