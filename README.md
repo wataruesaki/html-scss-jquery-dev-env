@@ -105,13 +105,13 @@ That's it!
 ### Create assets
 
 ```shell
-yarn run create -f [name]
+yarn run create -n [name]
 ```
 
 ### Delete assets
 
 ```shell
-yarn run delete -f [name]
+yarn run delete -n [name]
 ```
 
 <h2 id="next">4. Next</h2>
