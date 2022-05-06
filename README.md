@@ -24,11 +24,74 @@ Happy coding!
 
 <h2 id="features">1. Features</h2>
 
-1. HTML minifier
-2. Dart Sass Compiler
-3. Webpack
-4. Babel
-5. Automatic image compressor
-6. Hot reload server
+・HTML minifier
+
+・Dart Sass Compiler
+
+・Webpack
+
+・Babel
+
+・Automatic image compressor
+
+・Hot reload server
+
+・Linter
+
+・Formatter
+
+・Utils
 
 <h2 id="how-to-use">2. How to use</h2>
+
+### Development
+
+#### 1. Run dev server
+
+Visit [localhost:3000](http://localhost:3000) after you run the following command.
+
+```shell
+yarn dev
+```
+
+#### 2. Code
+
+Assets are in the following folders.
+
+HTML: `src/html`
+
+Sass: `src/sass`
+
+JavaScript: `src/js`
+
+Images: `src/images`
+
+### Deployment
+
+#### 1. Generate optimized assets
+
+```shell
+yarn build
+```
+
+The following assets are generated.
+
+`out/**/*.html`
+
+`out/assets/css/**/*.css`
+
+`out/assets/js/*.js`
+
+`out/assets/images/**/*.{jpg,jpeg,png,gif,svg}`
+
+#### 2. Check `out` in dev server
+
+Visit [localhost:3000](http://localhost:3000) after you run the following command.
+
+```shell
+yarn start
+```
+
+#### 3. Put `out` into your production environment if there is no problem
+
+That's it!
