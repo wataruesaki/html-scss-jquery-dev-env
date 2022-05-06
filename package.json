@@ -11,7 +11,8 @@
     "dev:mix": "npx mix watch",
     "build:mix": "npx mix -p",
     "dev:gulp": "npx gulp dev",
-    "build:gulp": "npx gulp build"
+    "build:gulp": "npx gulp build",
+    "create": "node scripts/create"
   },
   "devDependencies": {
     "browser-sync": "^2.27.9",
