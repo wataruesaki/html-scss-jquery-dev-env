@@ -2,7 +2,7 @@
 @use "sass:math";
 
 // * Media queries
-@function bd(){
+@function bd() {
   $res: map-get(v.$mq, bd);
 
   @if ($res != "sp" and $res != "pc") {
@@ -49,7 +49,13 @@
   } @else if ($bp-status == 2) {
     @error "#{$bp} exists but its value has unit.";
   } @else if ($bp-status == 3) {
-    @return map-get(v.$mq, $bp) + px;
+    @if (bd() == "sp") {
+      @return map-get(v.$mq, $bp) + px;
+    } @else if (bd() == "pc") {
+      @return (map-get(v.$mq, $bp) - 1) + px;
+    } @else {
+      @warn "bd() doesn't work.";
+    }
   }
 }
 
@@ -64,11 +70,9 @@
         @content;
       }
     } @else if (bd() == "pc") {
-      @media screen and (max-width: bp($bp) - 1) {
+      @media screen and (max-width: bp($bp)) {
         @content;
       }
-    } @else {
-      @warn "mq($bp) doesn't work.";
     }
   }
 }
