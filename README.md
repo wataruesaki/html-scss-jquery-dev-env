@@ -113,3 +113,13 @@ yarn run delete -f [name]
 ```
 
 <h2 id="next">4. Next</h2>
+
+I recommend you using a template engine like EJS and Pug.
+
+And you shouldn't use jQuery because you can develop most features even if you don't use it.
+
+Some frontend junior developers need it at first.
+
+I added it to this public template for them.
+
+But to be honest, I don't want you to use it if you don't have reasons you must use it.
