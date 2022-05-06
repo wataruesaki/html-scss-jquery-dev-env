@@ -13,3 +13,5 @@ glob
   )
 
 glob.sync('src/js/*.js').map((file) => mix.js(file, `${ASSETS_PATH}/js`))
+
+mix.browserSync(require('./bs-config'))
