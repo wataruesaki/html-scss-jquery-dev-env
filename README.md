@@ -88,7 +88,7 @@ The following assets are generated.
 
 `out/assets/images/**/*.{jpg,jpeg,png,gif,svg}`
 
-#### 2. Check `out` in dev server
+#### 2. Confirm `out` in dev server
 
 Visit [localhost:3000](http://localhost:3000) after you run the following command.
 
@@ -102,16 +102,106 @@ That's it!
 
 <h2 id="utils">3. Utils</h2>
 
-### Create assets
+### Mixins
 
-```shell
-yarn run create -f [name]
+#### mq($bp)
+
+Use media queries efficiently.
+
+##### Configuration
+
+###### `src/sass/foundation/variable.scss`
+
+```scss
+$mq: (
+  bd: "sp", // "sp" | "pc"
+  se: 374,
+  sm: 600,
+  md: 960,
+  lg: 1280,
+);
 ```
 
-### Delete assets
+bd stands for base device.
+
+It must be `"sp"` or `"pc"`.
+
+You can change and add breakpoints like sm, md and lg.
+
+###### Example
+
+```scss
+@use "foundation/mixin" as m;
+
+.hoge {
+  // * The following mq($bp) doesn't depend on bd
+  @include m.mq(se) {
+    // iPhone SE styles
+  }
+
+  // * In case of bd is sp
+  // SP Styles
+
+  @include m.mq(sm) {
+    // Tablet styles
+  }
+
+  @include m.mq(md) {
+    // Styles of a big tablet and PC
+  }
+
+  @include m.mq(lg) {
+    // PC styles
+  }
+
+  // * In case of bd is pc
+  // PC styles
+
+  @include m.mq(lg) {
+    // Styles of a big tablet and PC
+  }
+
+  @include m.mq(md) {
+    // Tablet styles
+  }
+
+  @include m.mq(sm) {
+    // SP Styles
+  }
+}
+```
+
+Basically, you should use `mq(sm)` and `mq(md)`.
+
+Use `mq(se)` and `mq(lg)` as necessary.
+
+#### fz($fz, $px: false)
+
+Output font-size.
+
+I prepared 2 patterns for old web browsers.
+
+```scss
+@use "foundation/mixin" as m;
+
+.hoge {
+  @include m.fz(1.4); // Should be font-size: 1.4rem;
+  @include m.fz(1.4, true); // Should be font-size: 14px; font-size: 1.4rem;
+}
+```
+
+### Scripts
+
+#### Create assets
 
 ```shell
-yarn run delete -f [name]
+yarn run create -n [name]
+```
+
+#### Delete assets
+
+```shell
+yarn run delete -n [name]
 ```
 
 <h2 id="next">4. Next</h2>
