@@ -4,6 +4,14 @@
   "repository": "git@github.com:wataruesaki/html-scss-jquery-dev-env.git",
   "author": "Wataru Esaki",
   "license": "MIT",
+  "scripts": {
+    "dev": "npm-run-all -p dev:*",
+    "build": "rm -rf out && npm-run-all -p build:*",
+    "dev:mix": "npx mix watch",
+    "build:mix": "npx mix -p",
+    "dev:gulp": "npx gulp dev",
+    "build:gulp": "npx gulp build"
+  },
   "devDependencies": {
     "browser-sync": "^2.27.9",
     "browser-sync-webpack-plugin": "^2.3.0",
