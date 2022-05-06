@@ -5,7 +5,7 @@ const chalk = require('chalk')
 const { getArgs } = require('./utils/func')
 const data = require('./utils/data')
 
-const create = () => {
+const create = async () => {
   const { name } = getArgs()
   const htmlPath = `src/html/${name}`
   const imgPath = `src/images/${name}`
@@ -13,6 +13,7 @@ const create = () => {
   const tryMkDir = async (path) => {
     try {
       await fs.mkdir(path)
+      console.log(chalk.green(`${path} was created.`))
       return true
     } catch (err) {
       if (err.code !== 'EEXIST') {
@@ -24,8 +25,8 @@ const create = () => {
     }
   }
 
-  tryMkDir(htmlPath)
-  const isGenImg = tryMkDir(imgPath)
+  await tryMkDir(htmlPath)
+  await tryMkDir(imgPath)
 
   const writePathMap = [
     {
@@ -45,19 +46,11 @@ const create = () => {
   writePathMap.map(async ({ path, data }) => {
     try {
       await fs.writeFile(path, data)
+      console.log(chalk.green(`${path} was created.`))
     } catch (err) {
       throw new Error(chalk.red(err.message))
     }
   })
-
-  console.log(chalk.green('Congrats!'))
-  console.log(chalk.green('The following assets were created.'))
-
-  if (isGenImg) {
-    console.log(imgPath)
-  }
-
-  writePathMap.map(({ path }) => console.log(path))
 }
 
 create()
