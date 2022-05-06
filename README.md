@@ -88,7 +88,7 @@ The following assets are generated.
 
 `out/assets/images/**/*.{jpg,jpeg,png,gif,svg}`
 
-#### 2. Check `out` in dev server
+#### 2. Confirm `out` in dev server
 
 Visit [localhost:3000](http://localhost:3000) after you run the following command.
 
@@ -106,46 +106,7 @@ That's it!
 
 #### mq($bp)
 
-```scss
-@use "foundation/mixin" as m;
-
-.hoge {
-  // * The following mq($bp) doesn't depend on base device
-  @include m.mq(se) {
-    // iPhone SE styles
-  }
-
-  // * In case of base device is sp
-  // SP Styles
-
-  @include m.mq(sm) {
-    // Tablet styles
-  }
-
-  @include m.mq(md) {
-    // Styles of a big tablet and PC
-  }
-
-  @include m.mq(lg) {
-    // PC styles
-  }
-
-  // * In case of base device is pc
-  // PC styles
-
-  @include m.mq(lg) {
-    // Styles of a big tablet and PC
-  }
-
-  @include m.mq(md) {
-    // Tablet styles
-  }
-
-  @include m.mq(sm) {
-    // SP Styles
-  }
-}
-```
+Use media queries efficiently.
 
 ##### Configuration
 
@@ -167,7 +128,67 @@ It must be `"sp"` or `"pc"`.
 
 You can change and add breakpoints like sm, md and lg.
 
-#### fz($fz)
+###### Example
+
+```scss
+@use "foundation/mixin" as m;
+
+.hoge {
+  // * The following mq($bp) doesn't depend on bd
+  @include m.mq(se) {
+    // iPhone SE styles
+  }
+
+  // * In case of bd is sp
+  // SP Styles
+
+  @include m.mq(sm) {
+    // Tablet styles
+  }
+
+  @include m.mq(md) {
+    // Styles of a big tablet and PC
+  }
+
+  @include m.mq(lg) {
+    // PC styles
+  }
+
+  // * In case of bd is pc
+  // PC styles
+
+  @include m.mq(lg) {
+    // Styles of a big tablet and PC
+  }
+
+  @include m.mq(md) {
+    // Tablet styles
+  }
+
+  @include m.mq(sm) {
+    // SP Styles
+  }
+}
+```
+
+Basically, you should use `mq(sm)` and `mq(md)`.
+
+Use `mq(se)` and `mq(lg)` as necessary.
+
+#### fz($fz, $px: false)
+
+Output font-size.
+
+I prepared 2 patterns for old web browsers.
+
+```scss
+@use "foundation/mixin" as m;
+
+.hoge {
+  @include m.fz(1.4); // Should be font-size: 1.4rem;
+  @include m.fz(1.4, true); // Should be font-size: 14px; font-size: 1.4rem;
+}
+```
 
 ### Scripts
 
