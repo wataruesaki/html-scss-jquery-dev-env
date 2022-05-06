@@ -4,11 +4,13 @@
 | Read more in http://www.browsersync.io/docs/options/
 |--------------------------------------------------------------------------
 */
+const config = require('./config')
+
 module.exports = {
   ui: {
     port: 3001,
   },
-  files: ['src/html/**/*.html', 'src/sass/**/*.scss', 'src/js/**/*.js'],
+  files: [config.src.html, config.src.sass, config.src.js],
   watchEvents: ['change'],
   watch: true,
   ignore: [],
