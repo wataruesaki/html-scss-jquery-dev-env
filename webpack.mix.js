@@ -8,6 +8,8 @@ glob
   .sync('src/sass/**/*.scss', {
     ignore: 'src/sass/**/_*.scss',
   })
-  .map((file) => {
+  .map((file) =>
     mix.sass(file, `${ASSETS_PATH}/css`).sourceMaps(false, 'inline-source-map')
-  })
+  )
+
+glob.sync('src/js/*.js').map((file) => mix.js(file, `${ASSETS_PATH}/js`))
