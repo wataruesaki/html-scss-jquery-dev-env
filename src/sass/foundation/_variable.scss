@@ -1,0 +1,15 @@
+// * Media queries
+$mq: (
+  bd: "sp", // "sp" | "pc"
+  sm: 600px,
+  md: 960px,
+  lg: 1280px,
+);
+
+// * Fonts
+$yu-gothic: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
+$main-font: $yu-gothic;
+
+// * Colors
+$black-1: #000;
+$white-1: #fff;
