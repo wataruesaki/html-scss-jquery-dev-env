@@ -1,0 +1,41 @@
+@use "variable" as v;
+
+// * Media queries
+@function bd(){
+  @return map-get(v.$mq, bd);
+}
+
+@function bp($bp) {
+  @return map-get(v.$mq, $bp);
+}
+
+@mixin mq($bp) {
+  $is-valid: false;
+  $keys: map-keys(map-remove(v.$mq, bd));
+
+  @each $key in $keys {
+    @if ($bp == $key) {
+      $is-valid: true;
+    }
+  }
+
+  @if ($is-valid == false) {
+    @error "#{$bp} doesn't exist in $mq variable.";
+  }
+
+  @if ($bp == se) {
+    @media screen and (max-width: bp($bp)) {
+      @content;
+    }
+  } @else if (bd() == "sp") {
+    @media screen and (min-width: bp($bp)) {
+      @content;
+    }
+  } @else if (bd() == "pc") {
+    @media screen and (max-width: bp($bp) - 1) {
+      @content;
+    }
+  } @else {
+    @warn "mq($bp) doesn't work.";
+  }
+}
