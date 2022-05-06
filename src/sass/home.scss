@@ -1,3 +1,17 @@
 @use "foundation/variable" as v;
 @use "foundation/mixin" as m;
 @use "common";
+
+main {
+  padding: 32px;
+}
+
+.title {
+  text-align: center;
+  @include m.fz(2.4);
+}
+
+.eye-catch {
+  max-width: 555px;
+  margin: 8px auto 0;
+}
