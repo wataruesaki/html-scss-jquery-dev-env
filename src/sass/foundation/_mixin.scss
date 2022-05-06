@@ -3,41 +3,73 @@
 
 // * Media queries
 @function bd(){
-  @return map-get(v.$mq, bd);
+  $res: map-get(v.$mq, bd);
+
+  @if ($res != "sp" and $res != "pc") {
+    @error "Base device must be "sp" or "pc"."
+  } @else {
+    @return $res;
+  }
 }
 
-@function bp($bp) {
-  @return map-get(v.$mq, $bp);
-}
+@function bp-status($bp) {
+  $res: 0;
+  $bps: map-remove(v.$mq, bd);
 
-@mixin mq($bp) {
-  $is-valid: false;
-  $keys: map-keys(map-remove(v.$mq, bd));
-
-  @each $key in $keys {
+  @each $key, $val in $bps {
     @if ($bp == $key) {
-      $is-valid: true;
+      @if ($val == "") {
+        $res: 1;
+      } @else {
+        @if (unitless($val) == false) {
+          $res: 2;
+        } @else {
+          $res: 3;
+        }
+      }
     }
   }
 
-  @if ($is-valid == false) {
-    @error "#{$bp} doesn't exist in $mq variable.";
-  }
+  /**
+   * 0: $bp doesn't exist
+   * 1: $bp exists but its value is empty
+   * 2: $bp exists but its value has unit
+   * 3: No problem
+   */
+  @return $res;
+}
 
+@function bp($bp) {
+  $bp-status: bp-status($bp);
+
+  @if ($bp-status == 0) {
+    @error "#{$bp} doesn't exist in $mq.";
+  } @else if ($bp-status == 1) {
+    @error "#{$bp} exists but its value is empty.";
+  } @else if ($bp-status == 2) {
+    @error "#{$bp} exists but its value has unit.";
+  } @else if ($bp-status == 3) {
+    @return map-get(v.$mq, $bp) + px;
+  }
+}
+
+@mixin mq($bp) {
   @if ($bp == se) {
     @media screen and (max-width: bp($bp)) {
       @content;
     }
-  } @else if (bd() == "sp") {
-    @media screen and (min-width: bp($bp)) {
-      @content;
-    }
-  } @else if (bd() == "pc") {
-    @media screen and (max-width: bp($bp) - 1) {
-      @content;
-    }
   } @else {
-    @warn "mq($bp) doesn't work.";
+    @if (bd() == "sp") {
+      @media screen and (min-width: bp($bp)) {
+        @content;
+      }
+    } @else if (bd() == "pc") {
+      @media screen and (max-width: bp($bp) - 1) {
+        @content;
+      }
+    } @else {
+      @warn "mq($bp) doesn't work.";
+    }
   }
 }
 
