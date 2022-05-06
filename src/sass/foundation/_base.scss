@@ -1,0 +1,21 @@
+@use "variable" as v;
+@use "mixin" as m;
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: v.$main-font;
+  line-height: 1.7;
+  color: v.$black-1;
+  @include m.fz(1.4);
+
+  //@include m.mq(md) {
+  //  @include m.fz(1.6);
+  //}
+}
+
+a {
+  color: v.$black-1;
+}
