@@ -17,7 +17,7 @@ const minifyHTML = (options = {}) =>
     .pipe(htmlmin(options))
     .pipe(gulp.dest(config.out.html))
 
-const minifyImages = () =>
+const compressImages = () =>
   gulp
     .src(config.src.img)
     .pipe(plumber())
@@ -39,14 +39,14 @@ const minifyImages = () =>
 
 gulp.task('dev', (cb) => {
   minifyHTML()
-  minifyImages()
+  compressImages()
   gulp.watch(config.src.html, minifyHTML)
-  gulp.watch(config.src.img, minifyImages)
+  gulp.watch(config.src.img, compressImages)
   cb()
 })
 
 gulp.task('build', (cb) => {
   minifyHTML({ collapseWhitespace: true })
-  minifyImages()
+  compressImages()
   cb()
 })
