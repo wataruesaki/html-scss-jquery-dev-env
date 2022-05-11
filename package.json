@@ -7,7 +7,7 @@
   "scripts": {
     "start": "npx browser-sync start -c bs-config.js",
     "dev": "npm-run-all -p dev:*",
-    "build": "rm -rf out && npm-run-all -p build:*",
+    "build": "npx gulp clean && npm-run-all -p build:*",
     "dev:mix": "npx mix watch",
     "build:mix": "npx mix -p",
     "dev:gulp": "npx gulp dev",
