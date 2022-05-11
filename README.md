@@ -24,6 +24,8 @@ Happy coding!
 
 ・npm 8.X.X
 
+・yarn 1.X.X
+
 <h2 id="features">1. Features</h2>
 
 ・HTML minifier
@@ -48,7 +50,15 @@ Happy coding!
 
 ### Development
 
-#### 1. Run dev server
+#### 1. Install packages
+
+Run only at the first time.
+
+```shell
+yarn install
+```
+
+#### 2. Run dev server
 
 Visit [localhost:3000](http://localhost:3000) after you run the following command.
 
