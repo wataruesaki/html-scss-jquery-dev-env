@@ -24,9 +24,7 @@ const sass = `@use "foundation/variable" as v;
 @use "common";
 `
 
-const js = `'use strict'
-
-import 'common'
+const js = `import './modules/common'
 import $ from 'jquery'
 
 $(function () {})
