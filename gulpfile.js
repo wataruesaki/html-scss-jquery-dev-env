@@ -1,6 +1,7 @@
 'use strict'
 
 const config = require('./config')
+const del = require('del')
 const gulp = require('gulp')
 const plumber = require('gulp-plumber')
 const htmlmin = require('gulp-htmlmin')
@@ -17,7 +18,7 @@ const minifyHTML = (options = {}) =>
     .pipe(htmlmin(options))
     .pipe(gulp.dest(config.out.html))
 
-const minifyImages = () =>
+const compressImages = () =>
   gulp
     .src(config.src.img)
     .pipe(plumber())
@@ -37,16 +38,21 @@ const minifyImages = () =>
     )
     .pipe(gulp.dest(config.out.img))
 
+gulp.task('clean', (cb) => {
+  del([`${config.out.root}/**`, `!${config.out.ignore}`])
+  cb()
+})
+
 gulp.task('dev', (cb) => {
   minifyHTML()
-  minifyImages()
+  compressImages()
   gulp.watch(config.src.html, minifyHTML)
-  gulp.watch(config.src.img, minifyImages)
+  gulp.watch(config.src.img, compressImages)
   cb()
 })
 
 gulp.task('build', (cb) => {
   minifyHTML({ collapseWhitespace: true })
-  minifyImages()
+  compressImages()
   cb()
 })

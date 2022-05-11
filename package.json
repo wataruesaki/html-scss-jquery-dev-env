@@ -1,13 +1,13 @@
 {
   "name": "html-scss-jquery-dev-env",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "repository": "git@github.com:wataruesaki/html-scss-jquery-dev-env.git",
   "author": "Wataru Esaki",
   "license": "MIT",
   "scripts": {
     "start": "npx browser-sync start -c bs-config.js",
     "dev": "npm-run-all -p dev:*",
-    "build": "rm -rf out && npm-run-all -p build:*",
+    "build": "npx gulp clean && npm-run-all -p build:*",
     "dev:mix": "npx mix watch",
     "build:mix": "npx mix -p",
     "dev:gulp": "npx gulp dev",

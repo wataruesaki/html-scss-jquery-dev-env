@@ -9,7 +9,7 @@ const { getArgs } = require('./utils/func')
 const delAssets = async () => {
   const { name } = getArgs()
   const targetPathArr = [
-    `src/html/${name}/index.html`,
+    `src/html/${name}`,
     `src/images/${name}`,
     `src/sass/${name}.scss`,
     `src/js/${name}.js`,

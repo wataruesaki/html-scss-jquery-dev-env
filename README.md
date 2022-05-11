@@ -14,15 +14,19 @@ Happy coding!
 
 ### [2. How to use](#how-to-use)
 
-### [3. Utils](#utils)
+### [3. Configuration](#configuration)
 
-### [4. Next](#next)
+### [4. Utils](#utils)
+
+### [5. Next](#next)
 
 <h2 id="prerequisites">0. Prerequisites</h2>
 
 ・Node 16.X.X
 
 ・npm 8.X.X
+
+・yarn 1.X.X
 
 <h2 id="features">1. Features</h2>
 
@@ -48,7 +52,15 @@ Happy coding!
 
 ### Development
 
-#### 1. Run dev server
+#### 1. Install packages
+
+Run only at the first time.
+
+```shell
+yarn install
+```
+
+#### 2. Run dev server
 
 Visit [localhost:3000](http://localhost:3000) after you run the following command.
 
@@ -78,7 +90,7 @@ Images: `src/images`
 yarn build
 ```
 
-The following assets are generated.
+The following optimized assets are generated.
 
 `out/**/*.html`
 
@@ -100,7 +112,37 @@ yarn start
 
 That's it!
 
-<h2 id="utils">3. Utils</h2>
+<h2 id="configuration">3. Configuration</h2>
+
+### `config.js`
+
+```js
+module.exports = {
+  src: {
+    html: 'src/html/**/*.html',
+    sass: 'src/sass/**/*.scss',
+    js: 'src/js/**/*.js',
+    img: 'src/images/**/*.{jpg,jpeg,png,gif,svg}',
+  },
+  out: {
+    root: 'out',
+    html: 'out',
+    sass: 'out/assets/css',
+    js: 'out/assets/js',
+    img: 'out/assets/images',
+    ignore: ['out/favicon.ico'],
+  },
+}
+
+```
+
+#### `out.ignore: []`
+
+Assets within `out` are deleted when you run `yarn build`.
+
+Store paths in `out.ignore` if you have assets you don't want to delete in `out`.
+
+<h2 id="utils">4. Utils</h2>
 
 ### Mixins
 
@@ -204,7 +246,7 @@ yarn run create -n [name]
 yarn run delete -n [name]
 ```
 
-<h2 id="next">4. Next</h2>
+<h2 id="next">5. Next</h2>
 
 I recommend you using a template engine like EJS and Pug.
 

@@ -6,9 +6,11 @@ module.exports = {
     img: 'src/images/**/*.{jpg,jpeg,png,gif,svg}',
   },
   out: {
+    root: 'out',
     html: 'out',
     sass: 'out/assets/css',
     js: 'out/assets/js',
     img: 'out/assets/images',
+    ignore: ['out/favicon.ico'],
   },
 }

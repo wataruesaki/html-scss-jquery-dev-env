@@ -6,6 +6,7 @@ const html = (name) => `<!DOCTYPE html>
     <meta charset="UTF-8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>${name}</title>
+    <link rel="stylesheet" href="/favicon.ico" />
     <link rel="stylesheet" href="/assets/css/${name}.css" />
   </head>
 

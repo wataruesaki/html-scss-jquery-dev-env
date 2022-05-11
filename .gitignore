@@ -111,4 +111,7 @@ mix-manifest.json
 mix.js.map
 
 # output
-out
+out/assets/css
+out/assets/images
+out/assets/js
+out/**/*.html
