@@ -1,6 +1,4 @@
-'use strict'
-
-import 'common'
+import './modules/common'
 import $ from 'jquery'
 
 $(function () {})
