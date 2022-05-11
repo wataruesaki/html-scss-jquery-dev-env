@@ -1,3 +1,5 @@
+'use strict'
+
 const html = (name) => `<!DOCTYPE html>
 <html lang="ja">
   <head>
