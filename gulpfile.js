@@ -39,7 +39,8 @@ const compressImages = () =>
     .pipe(gulp.dest(config.out.img))
 
 gulp.task('clean', (cb) => {
-  del([`${config.out.root}/**`, `!${config.out.ignore}`])
+  const ignore = config.out.ignore.map(i => `!${i}`)
+  del([`${config.out.root}/**`, ...ignore])
   cb()
 })
 
