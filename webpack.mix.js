@@ -1,5 +1,7 @@
 'use strict'
 
+require('laravel-mix-esbuild')
+
 const config = require('./config')
 const mix = require('laravel-mix')
 const glob = require('glob')
@@ -12,6 +14,6 @@ glob
     mix.sass(file, config.out.sass).sourceMaps(false, 'inline-source-map')
   )
 
-glob.sync('src/js/*.js').map((file) => mix.js(file, config.out.js))
+glob.sync('src/js/*.js').map((file) => mix.js(file, config.out.js).esbuild())
 
 mix.browserSync(require('./bs-config'))
