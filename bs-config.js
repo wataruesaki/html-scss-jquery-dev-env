@@ -10,7 +10,7 @@ module.exports = {
   ui: {
     port: 3001,
   },
-  files: [...config.src],
+  files: [Object.values(config.src)],
   watchEvents: ['change'],
   watch: true,
   ignore: [],
