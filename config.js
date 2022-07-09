@@ -11,6 +11,6 @@ module.exports = {
     sass: 'out/assets/css',
     js: 'out/assets/js',
     img: 'out/assets/images',
-    ignore: ['out/favicon.ico'],
+    ignore: [],
   },
 }

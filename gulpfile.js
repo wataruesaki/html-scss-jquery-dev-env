@@ -4,11 +4,15 @@ const config = require('./config')
 const del = require('del')
 const gulp = require('gulp')
 const plumber = require('gulp-plumber')
+const copy = require('gulp-copy')
 const imagemin = require('gulp-imagemin')
 const mozjpeg = require('imagemin-mozjpeg')
 const pngquant = require('imagemin-pngquant')
 const imageminGiflossy = require('imagemin-giflossy')
 const imageminSvgo = require('imagemin-svgo')
+
+const copyPublic = () =>
+  gulp.src('public/*').pipe(plumber()).pipe(copy('', {})).pipe(gulp.dest('out'))
 
 const compressImages = () =>
   gulp
@@ -30,19 +34,28 @@ const compressImages = () =>
     )
     .pipe(gulp.dest(config.out.img))
 
-gulp.task('clean', (cb) => {
-  const ignore = config.out.ignore.map((i) => `!${i}`)
-  del([`${config.out.root}/**`, ...ignore])
-  cb()
-})
+const main = () => {
+  copyPublic()
+  compressImages()
+}
+
+const watch = () => {
+  gulp.watch(config.src.img, compressImages)
+}
 
 gulp.task('dev', (cb) => {
-  compressImages()
-  gulp.watch(config.src.img, compressImages)
+  main()
+  watch()
   cb()
 })
 
 gulp.task('build', (cb) => {
-  compressImages()
+  main()
+  cb()
+})
+
+gulp.task('clean', (cb) => {
+  const ignore = config.out.ignore.map((i) => `!${i}`)
+  del([`${config.out.root}/**`, ...ignore])
   cb()
 })
